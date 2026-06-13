@@ -3,319 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE MATRIX CONSOLE // CHAHAT MISHRA</title>
+    <title>THE ROYAL MINIMALIST WORKSPACE</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* CORE ELITE TYPOGRAPHY & LAYOUT */
+        /* ROYAL MINIMALIST CLEAN LIGHT THEME */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            background-color: #080a0d;
-            color: #94a3b8;
+            background-color: #f8fafc;
+            color: #334155;
             display: flex;
             height: 100vh;
             overflow: hidden;
         }
 
-        /* PREMIUM DOCK SIDEBAR */
-        .sidebar-dock {
-            width: 280px;
-            background: #0f1319;
-            border-right: 1px solid rgba(255, 255, 255, 0.03);
+        /* LIGHT ROYAL SIDEBAR */
+        .sidebar {
+            width: 300px;
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
             display: flex;
             flex-direction: column;
-            padding: 30px 20px;
+            padding: 40px 24px;
             justify-content: space-between;
-            z-index: 100;
         }
 
-        .profile-section {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 20px;
-            margin-bottom: 25px;
+        .brand-section h1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.5px;
         }
 
-        .profile-title {
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
+        .brand-section p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
         }
 
-        .nav-group {
+        .nav-links {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
+            margin-top: 40px;
             flex-grow: 1;
         }
 
         .nav-item {
-            display: flex;
-            align-items: center;
             padding: 12px 16px;
             color: #64748b;
-            font-size: 13px;
-            font-weight: 700;
-            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .nav-item:hover, .nav-item.active {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.03);
+            color: #0f172a;
+            background: #f1f5f9;
         }
 
         .nav-item.active {
-            border-left: 3px solid #38bdf8;
-            border-radius: 0 8px 8px 0;
+            color: #0284c7;
+            background: #f0f9ff;
         }
 
-        /* MAIN APPARATUS CONTAINER */
-        .viewport-main {
+        /* MAIN APP VIEWPORT */
+        .main-content {
             flex-grow: 1;
-            height: 100vh;
+            padding: 60px;
             overflow-y: auto;
-            padding: 50px;
-            position: relative;
         }
 
-        /* MULTI-PAGE TRANSITION VIEWPORTS */
-        .chamber-view {
+        .view-section {
             display: none;
-            animation: fadeIn 0.4s ease forwards;
+            animation: fadeIn 0.3s ease-out;
         }
 
-        .chamber-view.active-view {
+        .view-section.active {
             display: block;
         }
 
-        .view-header {
-            font-size: 32px;
+        .header-title {
+            font-size: 36px;
             font-weight: 800;
-            color: #ffffff;
+            color: #0f172a;
+            letter-spacing: -1px;
             margin-bottom: 30px;
-            letter-spacing: -0.5px;
         }
 
-        /* EXPANDED 2026 HABIT TRACKER MATRIX GRID */
-        .matrix-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            max-width: 900px;
-        }
-
-        .matrix-row {
-            background: #11151d;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            border-radius: 8px;
-            padding: 18px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: transform 0.2s ease;
-        }
-
-        .matrix-row:hover {
-            transform: translateX(4px);
-            border-color: rgba(56, 189, 248, 0.2);
-        }
-
-        .row-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .habit-title {
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .habit-tag {
-            font-size: 11px;
-            color: #475569;
-            font-weight: 600;
-        }
-
-        /* PREMIUM SWITCH ACTION LOCKS */
-        .toggle-lock {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: #64748b;
-            padding: 8px 18px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-
-        .toggle-lock.logged {
-            background: rgba(56, 189, 248, 0.1);
-            border-color: #38bdf8;
-            color: #38bdf8;
-        }
-
-        /* VAULT ACCORDION BLOCKS */
-        .vault-card {
-            background: #11151d;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .vault-card:hover {
-            border-color: rgba(255,255,255,0.05);
-        }
-
-        .vault-title {
-            color: #ffffff;
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .vault-excerpt {
-            margin-top: 10px;
-            font-size: 13px;
-            line-height: 1.6;
-            color: #475569;
-            max-height: 0;
+        /* REAL EDITABLE MATRIX TABLE */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 12px;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e2e8f0;
         }
 
-        .vault-card.open .vault-excerpt {
-            max-height: 200px;
-            color: #94a3b8;
+        .matrix-table th {
+            background: #f8fafc;
+            padding: 16px 24px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 700;
+            color: #64748b;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .matrix-table td {
+            padding: 16px 24px;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 14px;
+            color: #334155;
+        }
+
+        /* EDITABLE INPUT STYLING */
+        .editable-task {
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            width: 100%;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .editable-task:focus {
+            background: #f1f5f9;
+            outline: 1px solid #cbd5e1;
+        }
+
+        /* ROYAL CUSTOM CHECKBOX BUTTON */
+        .check-btn {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #64748b;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .check-btn.checked {
+            background: #e0f2fe;
+            border-color: #bae6fd;
+            color: #0369a1;
+        }
+
+        /* ADD NEW ROW BUTTON */
+        .add-btn {
+            margin-top: 20px;
+            background: #0f172a;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .add-btn:hover { opacity: 0.9; }
+
+        /* FOLDER CARD STYLES */
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .folder-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .folder-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+        }
+
+        .folder-card h3 {
+            font-size: 16px;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .folder-card p {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(4px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="sidebar-dock">
+    <div class="sidebar">
         <div>
-            <div class="profile-section">
-                <div class="profile-title">CHAHAT MISHRA // SPACE</div>
-                <div style="font-size: 11px; color: #475569; margin-top: 4px; font-weight: bold;">CORE APPARATUS 2026</div>
+            <div class="brand-section">
+                <h1 id="workspaceTitle" contenteditable="true">CHAHAT'S VAULT</h1>
+                <p>ROYAL MINIMALIST MATRIX // 2026</p>
             </div>
             
-            <div class="nav-group">
-                <div class="nav-item active" onclick="switchChamber('matrix-view', this)">⚡ HABIT MATRIX</div>
-                <div class="nav-item" onclick="switchChamber('analytics-view', this)">📊 CORE METRICS</div>
-                <div class="nav-item" onclick="switchChamber('vault-view', this)">📁 RESEARCH VAULTS</div>
+            <div class="nav-links">
+                <div class="nav-item active" onclick="showSection('matrix-sec', this)">✦ HABIT CHAMBER</div>
+                <div class="nav-item" onclick="showSection('metrics-sec', this)">✦ ANALYSIS ENGINE</div>
+                <div class="nav-item" onclick="showSection('vault-sec', this)">✦ PHILOSOPHY VAULTS</div>
             </div>
         </div>
         
-        <div style="font-size: 11px; color: #334155; font-weight: bold;">SYSTEM v2.0 // DEPLOYED</div>
+        <div style="font-size: 11px; color: #94a3b8; font-weight: bold;">DESIGNED FOR ABSOLUTE FREEDOM</div>
     </div>
 
-    <div class="viewport-main">
+    <div class="main-content">
 
-        <div id="matrix-view" class="chamber-view active-view">
-            <div class="view-header">Daily Habit Tracking Matrix</div>
-            <div class="matrix-list">
-                <div class="matrix-row">
-                    <div class="row-meta"><span class="habit-title">Python Advanced Development</span><span class="habit-tag">CORE EXECUTION</span></div>
-                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
-                </div>
-                <div class="matrix-row">
-                    <div class="row-meta"><span class="habit-title">Strategic Concept Notes</span><span class="habit-tag">ACADEMIC RESERVES</span></div>
-                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
-                </div>
-                <div class="matrix-row">
-                    <div class="row-meta"><span class="habit-title">Write 2 Scenes (Novel Project)</span><span class="habit-tag">CREATIVE ASSETS</span></div>
-                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
-                </div>
-                <div class="matrix-row">
-                    <div class="row-meta"><span class="habit-title">Learn AI with ChatGPT Ecosystem</span><span class="habit-tag">LOGIC MATRIX</span></div>
-                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
-                </div>
-                <div class="matrix-row">
-                    <div class="row-meta"><span class="habit-title">Sololearn Coding Drills</span><span class="habit-tag">TACTICAL PRACTICE</span></div>
-                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
-                </div>
-                <div class="matrix-row">
-                    <div class="row-meta"><span class="habit-title">Grandmaster Chess Play Analysis</span><span class="habit-tag">COMPUTATIONAL THINKING</span></div>
-                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="analytics-view" class="chamber-view">
-            <div class="view-header">System Metrics & Accumulations</div>
-            <div style="max-width: 400px; margin-bottom: 40px;">
-                <canvas id="pieChart"></canvas>
-            </div>
-        </div>
-
-        <div id="vault-view" class="chamber-view">
-            <div class="view-header">Classified Project Vaults</div>
+        <div id="matrix-sec" class="view-section active">
+            <div class="header-title">Daily Execution Chamber</div>
             
-            <div class="vault-card" onclick="this.classList.toggle('open')">
-                <div class="vault-title">📁 Indian Education System — Research File</div>
-                <div class="vault-excerpt">Comprehensive timeline mapping and critical analysis tracking the architecture of modern subcontinental training frameworks, socio-economic policy impact loops, and institutional stagnation nodes.</div>
-            </div>
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th>HABIT OPERATION (CLICK TEXT TO EDIT)</th>
+                        <th style="width: 150px; text-align: center;">STATUS</th>
+                    </tr>
+                </thead>
+                <tbody id="habitTableBody">
+                    </tbody>
+            </table>
+            
+            <button class="add-btn" onclick="addNewHabitRow()">+ ADD CUSTOM HABIT ROW</button>
+        </div>
 
-            <div class="vault-card" onclick="this.classList.toggle('open')">
-                <div class="vault-title">📁 Parents & Children — A Philosophy of Wounds</div>
-                <div class="vault-excerpt">A deep analytical exploration into generational trauma transmission loops, behavioral cycles, and systemic psychological processing models inside familial structures.</div>
+        <div id="metrics-sec" class="view-section">
+            <div class="header-title">Data Distribution Metrics</div>
+            <div style="max-width: 320px;">
+                <canvas id="royalPieChart"></canvas>
             </div>
+        </div>
 
-            <div class="vault-card" onclick="this.classList.toggle('open')">
-                <div class="vault-title">📁 Conversation With Darkness</div>
-                <div class="vault-excerpt">Creative asset housing, complete narrative timeline outlines, structural styling parameters, and aesthetic drafts for future design projects.</div>
+        <div id="vault-sec" class="view-section">
+            <div class="header-title">Philosophy & Research Folders</div>
+            <div class="folder-grid">
+                <div class="folder-card">
+                    <h3>🎓 Indian Education System</h3>
+                    <p>Complete research file covering subcontinental infrastructure loops and policy notes.</p>
+                </div>
+                <div class="folder-card">
+                    <h3>🌿 A Philosophy of Wounds</h3>
+                    <p>Deep analytical logs tracking behavioral patterns, cycles, and generational trauma codes.</p>
+                </div>
+                <div class="folder-card">
+                    <h3>🔮 Conversation With Darkness</h3>
+                    <p>Creative assets, aesthetics, and outline structures for original literary creations.</p>
+                </div>
             </div>
         </div>
 
     </div>
 
     <script>
-        // NAVIGATION ENGINE: Wipes old layouts and glides new sections into view instantly
-        function switchChamber(chamberId, navLink) {
-            document.querySelectorAll('.chamber-view').forEach(view => view.classList.remove('active-view'));
+        // CLIENT DATABASE ENGINE (Saves locally for whoever opens the link!)
+        let defaultHabits = [
+            "Python Advanced Development",
+            "Chess Grandmaster Play Analysis",
+            "Write 2 Scenes (Novel Project)",
+            "Learn AI with ChatGPT Ecosystem",
+            "Sololearn Coding Drills",
+            "Memorize Strategic Theories"
+        ];
+
+        let savedHabits = JSON.parse(localStorage.getItem('royal_habit_names')) || defaultHabits;
+        let habitStates = JSON.parse(localStorage.getItem('royal_habit_states')) || new Array(savedHabits.length).fill(false);
+        
+        let pieChart;
+
+        function initTable() {
+            const tbody = document.getElementById('habitTableBody');
+            tbody.innerHTML = "";
+
+            savedHabits.forEach((habit, index) => {
+                let row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>
+                        <input class="editable-task" type="text" value="${habit}" onchange="editHabitName(${index}, this.value)">
+                    </td>
+                    <td style="text-align: center;">
+                        <button class="check-btn ${habitStates[index] ? 'checked' : ''}" onclick="toggleHabitState(${index}, this)">
+                            ${habitStates[index] ? 'COMPLETED' : 'LOG ACTIVITY'}
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            updateMetrics();
+        }
+
+        function toggleHabitState(index, btn) {
+            habitStates[index] = !habitStates[index];
+            if(habitStates[index]) {
+                btn.classList.add('checked');
+                btn.innerText = 'COMPLETED';
+            } else {
+                btn.classList.remove('checked');
+                btn.innerText = 'LOG ACTIVITY';
+            }
+            localStorage.setItem('royal_habit_states', JSON.stringify(habitStates));
+            updateMetrics();
+        }
+
+        function editHabitName(index, newValue) {
+            savedHabits[index] = newValue;
+            localStorage.setItem('royal_habit_names', JSON.stringify(savedHabits));
+        }
+
+        function addNewHabitRow() {
+            savedHabits.push("New Custom Operation");
+            habitStates.push(false);
+            localStorage.setItem('royal_habit_names', JSON.stringify(savedHabits));
+            localStorage.setItem('royal_habit_states', JSON.stringify(habitStates));
+            initTable();
+        }
+
+        function showSection(sectionId, navLink) {
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             
-            document.getElementById(chamberId).classList.add('active-view');
+            document.getElementById(sectionId).classList.add('active');
             navLink.classList.add('active');
         }
 
-        function clickHabit(btn) {
-            btn.classList.toggle('logged');
-            btn.innerText = btn.classList.contains('logged') ? 'COMPLETED' : 'LOG WINDOW';
+        function updateMetrics() {
+            let done = habitStates.filter(Boolean).length;
+            let pending = habitStates.length - done;
+
+            if(pieChart) {
+                pieChart.data.datasets[0].data = [done, pending];
+                pieChart.update();
+            }
         }
 
-        // CHART COMPILING ENGINE
-        const ctxPie = document.getElementById('pieChart').getContext('2d');
-        new Chart(ctxPie, {
+        // INITIALIZE CHART
+        const ctx = document.getElementById('royalPieChart').getContext('2d');
+        pieChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Completed Windows', 'Remaining Loops'],
+                labels: ['Completed Operations', 'Pending Windows'],
                 datasets: [{
-                    data: [65, 35],
-                    backgroundColor: ['#38bdf8', '#1e293b'],
-                    borderColor: '#0f1319',
+                    data: [0, 1],
+                    backgroundColor: ['#0284c7', '#f1f5f9'],
+                    borderColor: '#ffffff',
                     borderWidth: 2
                 }]
             },
-            options: { responsive: true, plugins: { legend: { labels: { color: '#64748b' } } } }
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom', labels: { color: '#64748b' } } }
+            }
         });
+
+        // LOAD WORKSPACE TITLE PREFERENCE
+        const wsTitle = document.getElementById('workspaceTitle');
+        wsTitle.innerText = localStorage.getItem('royal_ws_title') || "CHAHAT'S VAULT";
+        wsTitle.addEventListener('input', () => {
+            localStorage.setItem('royal_ws_title', wsTitle.innerText);
+        });
+
+        // BOOT SYSTEM
+        initTable();
     </script>
 </body>
 </html>
