@@ -3,370 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUANTUM HABIT MATRIX // TERMINAL</title>
+    <title>THE MATRIX CONSOLE // CHAHAT MISHRA</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* CORE ELITE TYPOGRAPHY & LAYOUT */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background-color: #060709;
-            color: #cbd5e1;
-            overflow-x: hidden;
-            perspective: 1000px;
-            padding-bottom: 60px;
-        }
-
-        .matrix-grid {
-            position: fixed;
-            top: -20%;
-            left: -20%;
-            width: 140%;
-            height: 140%;
-            z-index: 1;
-            opacity: 0.05;
-            background-image: 
-                linear-gradient(to right, #00E5FF 1px, transparent 1px),
-                linear-gradient(to bottom, #00E5FF 1px, transparent 1px);
-            background-size: 40px 40px;
-            transform: rotateX(15deg);
-            pointer-events: none;
-            will-change: transform;
-        }
-
-        header {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 40px auto 20px auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .system-title {
-            color: #ffffff;
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        .streak-badge {
-            background: rgba(0, 229, 255, 0.1);
-            color: #00E5FF;
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            padding: 6px 16px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
-        }
-
-        main {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-cols: 1fr;
-            gap: 30px;
-        }
-
-        @media (min-width: 768px) {
-            main { grid-template-cols: 1fr 1fr; }
-        }
-
-        .hud-panel {
-            background: rgba(11, 14, 19, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 25px;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .panel-header {
-            font-size: 12px;
-            color: #FF5722;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 87, 34, 0.15);
-            padding-bottom: 8px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .habit-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .habit-name {
-            font-size: 14px;
-            color: #e2e8f0;
-            font-weight: bold;
-        }
-
-        .action-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #080a0d;
             color: #94a3b8;
-            padding: 6px 14px;
-            border-radius: 4px;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* PREMIUM DOCK SIDEBAR */
+        .sidebar-dock {
+            width: 280px;
+            background: #0f1319;
+            border-right: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .profile-section {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .profile-title {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .nav-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
             cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-item.active {
+            border-left: 3px solid #38bdf8;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* MAIN APPARATUS CONTAINER */
+        .viewport-main {
+            flex-grow: 1;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 50px;
+            position: relative;
+        }
+
+        /* MULTI-PAGE TRANSITION VIEWPORTS */
+        .chamber-view {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .chamber-view.active-view {
+            display: block;
+        }
+
+        .view-header {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        /* EXPANDED 2026 HABIT TRACKER MATRIX GRID */
+        .matrix-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            max-width: 900px;
+        }
+
+        .matrix-row {
+            background: #11151d;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
+
+        .matrix-row:hover {
+            transform: translateX(4px);
+            border-color: rgba(56, 189, 248, 0.2);
+        }
+
+        .row-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .habit-title {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .habit-tag {
             font-size: 11px;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        /* PREMIUM SWITCH ACTION LOCKS */
+        .toggle-lock {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #64748b;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .toggle-lock.logged {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: #38bdf8;
+            color: #38bdf8;
+        }
+
+        /* VAULT ACCORDION BLOCKS */
+        .vault-card {
+            background: #11151d;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            border: 1px solid transparent;
             transition: all 0.3s ease;
         }
 
-        .action-btn.completed {
-            background: rgba(0, 229, 255, 0.12);
-            border-color: #00E5FF;
-            color: #00E5FF;
-            box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+        .vault-card:hover {
+            border-color: rgba(255,255,255,0.05);
         }
 
-        .control-btn {
-            background: #FF5722;
-            border: none;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 3px;
-            font-size: 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .score-display {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 0;
-        }
-
-        .score-num {
-            font-size: 64px;
-            font-weight: 900;
+        .vault-title {
             color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
         }
 
-        .score-label {
-            font-size: 11px;
-            color: #64748b;
-            letter-spacing: 2px;
-            margin-top: 5px;
+        .vault-excerpt {
+            margin-top: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #475569;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
         }
 
-        .chart-box {
-            position: relative;
-            width: 100%;
-            max-height: 240px;
-            display: flex;
-            justify-content: center;
+        .vault-card.open .vault-excerpt {
+            max-height: 200px;
+            color: #94a3b8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="matrix-grid" id="matrixGrid"></div>
-
-    <header>
+    <div class="sidebar-dock">
         <div>
-            <h1 class="system-title">QUANTUM_HABIT_MATRIX</h1>
-            <p style="font-size: 10px; color: #475569; margin-top: 4px;">SYSTEM OPERATIONAL // LIVE DATA CHAMBER</p>
-        </div>
-        <div class="streak-badge" id="streakDisplay">⚡ STREAK: 0 DAYS</div>
-    </header>
-
-    <main>
-        <div class="hud-panel">
-            <div class="panel-header">
-                <span>// DAILY TARGET CHECKLIST</span>
-                <button class="control-btn" onclick="submitDay()">LOCK & SUBMIT DAY</button>
+            <div class="profile-section">
+                <div class="profile-title">CHAHAT MISHRA // SPACE</div>
+                <div style="font-size: 11px; color: #475569; margin-top: 4px; font-weight: bold;">CORE APPARATUS 2026</div>
             </div>
             
-            <div class="habit-row">
-                <span class="habit-name">Python Advanced Class</span>
-                <button class="action-btn" id="habit0" onclick="toggleHabit(0)">LOG ACTIVITY</button>
+            <div class="nav-group">
+                <div class="nav-item active" onclick="switchChamber('matrix-view', this)">⚡ HABIT MATRIX</div>
+                <div class="nav-item" onclick="switchChamber('analytics-view', this)">📊 CORE METRICS</div>
+                <div class="nav-item" onclick="switchChamber('vault-view', this)">📁 RESEARCH VAULTS</div>
             </div>
-            <div class="habit-row">
-                <span class="habit-name">Early Wake-up Routine</span>
-                <button class="action-btn" id="habit1" onclick="toggleHabit(1)">LOG ACTIVITY</button>
-            </div>
-            <div class="habit-row">
-                <span class="habit-name">Strategic Reading & Notes</span>
-                <button class="action-btn" id="habit2" onclick="toggleHabit(2)">LOG ACTIVITY</button>
-            </div>
-            <div class="habit-row">
-                <span class="habit-name">Fitness & Optimization</span>
-                <button class="action-btn" id="habit3" onclick="toggleHabit(3)">LOG ACTIVITY</button>
-            </div>
-            <div class="habit-row">
-                <span class="habit-name">Financial Market Tracking</span>
-                <button class="action-btn" id="habit4" onclick="toggleHabit(4)">LOG ACTIVITY</button>
+        </div>
+        
+        <div style="font-size: 11px; color: #334155; font-weight: bold;">SYSTEM v2.0 // DEPLOYED</div>
+    </div>
+
+    <div class="viewport-main">
+
+        <div id="matrix-view" class="chamber-view active-view">
+            <div class="view-header">Daily Habit Tracking Matrix</div>
+            <div class="matrix-list">
+                <div class="matrix-row">
+                    <div class="row-meta"><span class="habit-title">Python Advanced Development</span><span class="habit-tag">CORE EXECUTION</span></div>
+                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
+                </div>
+                <div class="matrix-row">
+                    <div class="row-meta"><span class="habit-title">Strategic Concept Notes</span><span class="habit-tag">ACADEMIC RESERVES</span></div>
+                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
+                </div>
+                <div class="matrix-row">
+                    <div class="row-meta"><span class="habit-title">Write 2 Scenes (Novel Project)</span><span class="habit-tag">CREATIVE ASSETS</span></div>
+                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
+                </div>
+                <div class="matrix-row">
+                    <div class="row-meta"><span class="habit-title">Learn AI with ChatGPT Ecosystem</span><span class="habit-tag">LOGIC MATRIX</span></div>
+                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
+                </div>
+                <div class="matrix-row">
+                    <div class="row-meta"><span class="habit-title">Sololearn Coding Drills</span><span class="habit-tag">TACTICAL PRACTICE</span></div>
+                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
+                </div>
+                <div class="matrix-row">
+                    <div class="row-meta"><span class="habit-title">Grandmaster Chess Play Analysis</span><span class="habit-tag">COMPUTATIONAL THINKING</span></div>
+                    <button class="toggle-lock" onclick="clickHabit(this)">LOG WINDOW</button>
+                </div>
             </div>
         </div>
 
-        <div class="hud-panel">
-            <div class="panel-header">// LIVE PERFORMANCE SCORE</div>
-            <div class="score-display">
-                <div class="score-num" id="liveScore">0</div>
-                <div class="score-label" id="scoreLabel">INITIALIZING MATRIX...</div>
-            </div>
-        </div>
-
-        <div class="hud-panel">
-            <div class="panel-header">// ACCUMULATED TARGET RATIO</div>
-            <div class="chart-box">
+        <div id="analytics-view" class="chamber-view">
+            <div class="view-header">System Metrics & Accumulations</div>
+            <div style="max-width: 400px; margin-bottom: 40px;">
                 <canvas id="pieChart"></canvas>
             </div>
         </div>
 
-        <div class="hud-panel">
-            <div class="panel-header">// RECENT DAILY SCORES HISTORY</div>
-            <div class="chart-box">
-                <canvas id="barChart"></canvas>
+        <div id="vault-view" class="chamber-view">
+            <div class="view-header">Classified Project Vaults</div>
+            
+            <div class="vault-card" onclick="this.classList.toggle('open')">
+                <div class="vault-title">📁 Indian Education System — Research File</div>
+                <div class="vault-excerpt">Comprehensive timeline mapping and critical analysis tracking the architecture of modern subcontinental training frameworks, socio-economic policy impact loops, and institutional stagnation nodes.</div>
+            </div>
+
+            <div class="vault-card" onclick="this.classList.toggle('open')">
+                <div class="vault-title">📁 Parents & Children — A Philosophy of Wounds</div>
+                <div class="vault-excerpt">A deep analytical exploration into generational trauma transmission loops, behavioral cycles, and systemic psychological processing models inside familial structures.</div>
+            </div>
+
+            <div class="vault-card" onclick="this.classList.toggle('open')">
+                <div class="vault-title">📁 Conversation With Darkness</div>
+                <div class="vault-excerpt">Creative asset housing, complete narrative timeline outlines, structural styling parameters, and aesthetic drafts for future design projects.</div>
             </div>
         </div>
-    </main>
+
+    </div>
 
     <script>
-        // CORE DATABASE LOGIC (Saves directly to browser memory)
-        let appState = JSON.parse(localStorage.getItem('quantum_habit_data')) || {
-            streak: 0,
-            currentDayStatus: [false, false, false, false, false],
-            history: [0, 0, 0, 0] // Stores last 4 submitted day scores
-        };
-
-        const totalHabits = 5;
-        let pieChart, barChart;
-
-        function updateUI() {
-            // Calculate active score based on clicked buttons
-            let completedCount = appState.currentDayStatus.filter(Boolean).length;
-            let currentScore = Math.round((completedCount / totalHabits) * 100);
+        // NAVIGATION ENGINE: Wipes old layouts and glides new sections into view instantly
+        function switchChamber(chamberId, navLink) {
+            document.querySelectorAll('.chamber-view').forEach(view => view.classList.remove('active-view'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             
-            document.getElementById('liveScore').innerText = currentScore;
-            document.getElementById('streakDisplay').innerText = `⚡ STREAK: ${appState.streak} DAYS`;
-
-            // Dynamic text based on how well you did
-            let label = "GET TO WORK TERMINAL";
-            if(currentScore === 100) label = "ABSOLUTE DOMINANCE INDEX";
-            else if(currentScore >= 60) label = "STRONG EFFORT INDEX";
-            else if(currentScore > 0) label = "MINIMAL ENGINE OUTPUT";
-            document.getElementById('scoreLabel').innerText = label;
-
-            // Update button styles instantly when clicked
-            for (let i = 0; i < totalHabits; i++) {
-                let btn = document.getElementById(`habit${i}`);
-                if (appState.currentDayStatus[i]) {
-                    btn.classList.add('completed');
-                    btn.innerText = 'COMPLETED';
-                } else {
-                    btn.classList.remove('completed');
-                    btn.innerText = 'LOG ACTIVITY';
-                }
-            }
-
-            // Update Charts
-            let totalCompletedHistorical = appState.history.reduce((a, b) => a + b, 0) / 100 * totalHabits + completedCount;
-            let totalMissedHistorical = (appState.history.length + 1) * totalHabits - totalCompletedHistorical;
-
-            pieChart.data.datasets[0].data = [totalCompletedHistorical, totalMissedHistorical];
-            pieChart.update();
-
-            barChart.data.datasets[0].data = [...appState.history, currentScore].slice(-4);
-            barChart.update();
-
-            // Save to browser cache
-            localStorage.setItem('quantum_habit_data', JSON.stringify(appState));
+            document.getElementById(chamberId).classList.add('active-view');
+            navLink.classList.add('active');
         }
 
-        function toggleHabit(index) {
-            appState.currentDayStatus[index] = !appState.currentDayStatus[index];
-            updateUI();
+        function clickHabit(btn) {
+            btn.classList.toggle('logged');
+            btn.innerText = btn.classList.contains('logged') ? 'COMPLETED' : 'LOG WINDOW';
         }
 
-        // THE "LOCK & SUBMIT DAY" CHAMBER
-        function submitDay() {
-            let completedCount = appState.currentDayStatus.filter(Boolean).length;
-            let finalDayScore = Math.round((completedCount / totalHabits) * 100);
-
-            // If you completed more than 50% of your habits, streak builds!
-            if (finalDayScore >= 60) {
-                appState.streak += 1;
-            } else {
-                appState.streak = 0; // Streak breaks if you miss too much!
-            }
-
-            // Push score into history charts
-            appState.history.push(finalDayScore);
-            if (appState.history.length > 4) appState.history.shift();
-
-            // Reset checklist boxes for the next day
-            appState.currentDayStatus = [false, false, false, false, false];
-            
-            alert(`Day locked! Score: ${finalDayScore}%. Starting fresh deployment room.`);
-            updateUI();
-        }
-
-        // BACKGROUND GRIDS VISUAL ENGINE
-        const grid = document.getElementById('matrixGrid');
-        window.addEventListener('scroll', () => {
-            grid.style.transform = `rotateX(15deg) translateY(${window.scrollY * 0.15}px)`;
-        });
-
-        // CHARTS SETUP
+        // CHART COMPILING ENGINE
         const ctxPie = document.getElementById('pieChart').getContext('2d');
-        pieChart = new Chart(ctxPie, {
+        new Chart(ctxPie, {
             type: 'pie',
             data: {
-                labels: ['Completed Operations', 'Missed Windows'],
+                labels: ['Completed Windows', 'Remaining Loops'],
                 datasets: [{
-                    data: [0, 1],
-                    backgroundColor: ['rgba(0, 229, 255, 0.6)', 'rgba(255, 87, 34, 0.4)'],
-                    borderColor: ['#00E5FF', '#FF5722'],
-                    borderWidth: 1.5
+                    data: [65, 35],
+                    backgroundColor: ['#38bdf8', '#1e293b'],
+                    borderColor: '#0f1319',
+                    borderWidth: 2
                 }]
             },
-            options: { responsive: true, plugins: { legend: { labels: { color: '#94a3b8', font: { family: 'monospace' } } } } }
+            options: { responsive: true, plugins: { legend: { labels: { color: '#64748b' } } } }
         });
-
-        const ctxBar = document.getElementById('barChart').getContext('2d');
-        barChart = new Chart(ctxBar, {
-            type: 'bar',
-            data: {
-                labels: ['Day-3', 'Day-2', 'Day-1', 'Active Day'],
-                datasets: [{
-                    data: [0, 0, 0, 0],
-                    backgroundColor: 'rgba(0, 229, 255, 0.2)',
-                    borderColor: '#00E5FF',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: { ticks: { color: '#475569' }, grid: { display: false } },
-                    y: { min: 0, max: 100, ticks: { color: '#475569' }, grid: { color: 'rgba(255,255,255,0.03)' } }
-                },
-                plugins: { legend: { display: false } }
-            }
-        });
-
-        // Boot system data
-        updateUI();
     </script>
 </body>
 </html>
