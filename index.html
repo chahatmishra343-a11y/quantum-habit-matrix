@@ -6,7 +6,7 @@
     <title>THE ROYAL MINIMALIST WORKSPACE</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* ROYAL MINIMALIST CLEAN LIGHT THEME */
+        /* LUXURY LIGHT DESIGN SYSTEM */
         * {
             margin: 0;
             padding: 0;
@@ -15,205 +15,256 @@
         }
 
         body {
-            background-color: #f8fafc;
-            color: #334155;
+            background-color: #fffdf9;
+            color: #475569;
             display: flex;
             height: 100vh;
             overflow: hidden;
         }
 
-        /* LIGHT ROYAL SIDEBAR */
+        /* REGAL COMPACT SIDEBAR */
         .sidebar {
-            width: 300px;
+            width: 290px;
             background: #ffffff;
-            border-right: 1px solid #e2e8f0;
+            border-right: 1px solid #f3ece3;
             display: flex;
             flex-direction: column;
-            padding: 40px 24px;
+            padding: 45px 24px;
             justify-content: space-between;
         }
 
         .brand-section h1 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
-            color: #0f172a;
-            letter-spacing: -0.5px;
+            color: #1e293b;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            outline: none;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        .brand-section h1:focus {
+            background: #fcfaf4;
         }
 
         .brand-section p {
-            font-size: 12px;
-            color: #94a3b8;
+            font-size: 11px;
+            color: #b4a28d;
+            letter-spacing: 0.5px;
             margin-top: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
         .nav-links {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 40px;
+            gap: 8px;
+            margin-top: 45px;
             flex-grow: 1;
         }
 
         .nav-item {
-            padding: 12px 16px;
-            color: #64748b;
-            font-size: 14px;
+            padding: 12px 14px;
+            color: #78879a;
+            font-size: 13px;
             font-weight: 600;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .nav-item:hover, .nav-item.active {
-            color: #0f172a;
-            background: #f1f5f9;
+            color: #1e293b;
+            background: #fbf9f4;
         }
 
         .nav-item.active {
-            color: #0284c7;
-            background: #f0f9ff;
+            color: #c5a059;
+            background: #fdfbf7;
+            font-weight: 700;
+            border-left: 2px solid #c5a059;
+            border-radius: 0 6px 6px 0;
         }
 
-        /* MAIN APP VIEWPORT */
+        /* VIEWPORT CORE HOUSING */
         .main-content {
             flex-grow: 1;
-            padding: 60px;
+            padding: 60px 80px;
             overflow-y: auto;
         }
 
         .view-section {
             display: none;
-            animation: fadeIn 0.3s ease-out;
         }
 
         .view-section.active {
             display: block;
+            animation: elegantSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .header-title {
-            font-size: 36px;
-            font-weight: 800;
-            color: #0f172a;
-            letter-spacing: -1px;
-            margin-bottom: 30px;
+            font-size: 26px;
+            font-weight: 400;
+            color: #1e293b;
+            letter-spacing: -0.5px;
+            margin-bottom: 40px;
         }
 
-        /* REAL EDITABLE MATRIX TABLE */
+        /* CUSTOM TRANSLATION MATRIX ROW SHEETS */
         .matrix-table {
             width: 100%;
-            border-collapse: collapse;
-            background: #ffffff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-            border: 1px solid #e2e8f0;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            margin-top: -10px;
         }
 
         .matrix-table th {
-            background: #f8fafc;
-            padding: 16px 24px;
+            padding: 10px 16px;
             text-align: left;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 700;
-            color: #64748b;
-            border-bottom: 1px solid #e2e8f0;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .matrix-table td {
-            padding: 16px 24px;
-            border-bottom: 1px solid #f1f5f9;
-            font-size: 14px;
-            color: #334155;
+        /* TRANSFORMATION LAYER ANIMATIONS */
+        .matrix-row {
+            background: #ffffff;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 2px 10px rgba(197, 160, 89, 0.01);
         }
 
-        /* EDITABLE INPUT STYLING */
-        .editable-task {
+        .matrix-row:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.04);
+        }
+
+        .matrix-row.completed-transform {
+            opacity: 0.5;
+            transform: scale(0.985);
+            box-shadow: none;
+        }
+
+        .matrix-row td {
+            padding: 16px 20px;
+            border-top: 1px solid #f5efe6;
+            border-bottom: 1px solid #f5efe6;
+        }
+
+        .matrix-row td:first-child {
+            border-left: 1px solid #f5efe6;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .matrix-row td:last-child {
+            border-right: 1px solid #f5efe6;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        /* TOTAL CUSTOMIZATION TEXT BOXES */
+        .editable-field {
             border: none;
             background: transparent;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
             color: #334155;
             width: 100%;
-            padding: 4px;
+            padding: 6px;
             border-radius: 4px;
+            transition: background 0.2s;
         }
 
-        .editable-task:focus {
-            background: #f1f5f9;
-            outline: 1px solid #cbd5e1;
+        .editable-field:focus {
+            background: #fbf9f4;
+            outline: none;
         }
 
-        /* ROYAL CUSTOM CHECKBOX BUTTON */
+        /* ROYALTY ACTION BUTTONS */
         .check-btn {
-            background: #f1f5f9;
-            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             color: #64748b;
-            padding: 6px 14px;
+            padding: 8px 18px;
             border-radius: 6px;
             font-size: 11px;
             font-weight: 700;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .check-btn:hover {
+            border-color: #c5a059;
+            color: #c5a059;
         }
 
         .check-btn.checked {
-            background: #e0f2fe;
-            border-color: #bae6fd;
-            color: #0369a1;
+            background: #fdfbf6;
+            border-color: #c5a059;
+            color: #c5a059;
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.12);
         }
 
-        /* ADD NEW ROW BUTTON */
-        .add-btn {
+        .add-row-action {
             margin-top: 20px;
-            background: #0f172a;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
+            background: transparent;
+            color: #c5a059;
+            border: 1px dashed #c5a059;
+            padding: 12px 24px;
             border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
             cursor: pointer;
-            transition: opacity 0.2s;
+            transition: all 0.2s;
         }
 
-        .add-btn:hover { opacity: 0.9; }
+        .add-row-action:hover {
+            background: #fdfbf7;
+        }
 
-        /* FOLDER CARD STYLES */
-        .folder-grid {
+        /* VAULT DIRECTORY BOARDS */
+        .vault-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 25px;
         }
 
-        .folder-card {
+        .vault-item {
             background: #ffffff;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #f3ece3;
             border-radius: 12px;
-            padding: 24px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.005);
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s ease;
         }
 
-        .folder-card:hover {
+        .vault-item:hover {
+            border-color: #c5a059;
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            box-shadow: 0 12px 28px rgba(197, 160, 89, 0.03);
         }
 
-        .folder-card h3 {
+        .vault-item h3 {
             font-size: 16px;
-            color: #0f172a;
-            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
         }
 
-        .folder-card p {
+        .vault-item p {
             font-size: 13px;
             color: #64748b;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
+        @keyframes elegantSlide {
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -223,60 +274,60 @@
     <div class="sidebar">
         <div>
             <div class="brand-section">
-                <h1 id="workspaceTitle" contenteditable="true">CHAHAT'S VAULT</h1>
-                <p>ROYAL MINIMALIST MATRIX // 2026</p>
+                <h1 id="workspaceTitle" contenteditable="true" onblur="saveCustomTitle()">CHAHAT'S VAULT</h1>
+                <p>Royal Minimalism // Matrix</p>
             </div>
             
             <div class="nav-links">
-                <div class="nav-item active" onclick="showSection('matrix-sec', this)">✦ HABIT CHAMBER</div>
-                <div class="nav-item" onclick="showSection('metrics-sec', this)">✦ ANALYSIS ENGINE</div>
-                <div class="nav-item" onclick="showSection('vault-sec', this)">✦ PHILOSOPHY VAULTS</div>
+                <div class="nav-item active" onclick="switchTab('matrix-sec', this)">✦ HABIT CHAMBER</div>
+                <div class="nav-item" onclick="switchTab('metrics-sec', this)">✦ PERFORMANCE ARCHIVE</div>
+                <div class="nav-item" onclick="switchTab('vault-sec', this)">✦ CRITICAL VAULTS</div>
             </div>
         </div>
         
-        <div style="font-size: 11px; color: #94a3b8; font-weight: bold;">DESIGNED FOR ABSOLUTE FREEDOM</div>
+        <div style="font-size: 10px; color: #cbd5e1; font-weight: 700; letter-spacing: 0.5px;">SECURE ENVIRONMENT // v3.0</div>
     </div>
 
     <div class="main-content">
 
         <div id="matrix-sec" class="view-section active">
-            <div class="header-title">Daily Execution Chamber</div>
+            <div class="header-title">Daily Operations Matrix</div>
             
             <table class="matrix-table">
                 <thead>
                     <tr>
-                        <th>HABIT OPERATION (CLICK TEXT TO EDIT)</th>
-                        <th style="width: 150px; text-align: center;">STATUS</th>
+                        <th>Habit Matrix Target Fields (Click to edit text directly)</th>
+                        <th style="width: 160px; text-align: right;">Execution</th>
                     </tr>
                 </thead>
-                <tbody id="habitTableBody">
+                <tbody id="habitTableContainer">
                     </tbody>
             </table>
             
-            <button class="add-btn" onclick="addNewHabitRow()">+ ADD CUSTOM HABIT ROW</button>
+            <button class="add-row-action" onclick="createNewRow()">+ ADD CUSTOMIZABLE FIELD ROW</button>
         </div>
 
         <div id="metrics-sec" class="view-section">
-            <div class="header-title">Data Distribution Metrics</div>
-            <div style="max-width: 320px;">
-                <canvas id="royalPieChart"></canvas>
+            <div class="header-title">Dynamic Performance Balance</div>
+            <div style="max-width: 280px; margin: 0 auto;">
+                <canvas id="royalChartDisplay"></canvas>
             </div>
         </div>
 
         <div id="vault-sec" class="view-section">
-            <div class="header-title">Philosophy & Research Folders</div>
-            <div class="folder-grid">
-                <div class="folder-card">
+            <div class="header-title">Classified Intellectual Vaults</div>
+            <div class="vault-grid">
+                <div class="vault-item">
                     <h3>🎓 Indian Education System</h3>
-                    <p>Complete research file covering subcontinental infrastructure loops and policy notes.</p>
+                    <p>Comprehensive timeline maps and critical reviews analyzing structural policy locks and stagnation models.</p>
                 </div>
-                <div class="folder-card">
+                <div class="vault-item">
                     <h3>🌿 A Philosophy of Wounds</h3>
-                    <p>Deep analytical logs tracking behavioral patterns, cycles, and generational trauma codes.</p>
+                    <p>Deep behavioral trace charts tracking generational pattern loops, transmission cycles, and healing pathways.</p>
                 </div>
-                <div class="folder-card">
+                <div class="vault-item">
                     <h3>🔮 Conversation With Darkness</h3>
-                    <p>Creative assets, aesthetics, and outline structures for original literary creations.</p>
+                    <p>Creative blueprint text assets, visual aesthetic criteria outlines, and conceptual narrative setups.</p>
                 </div>
             </div>
         </div>
@@ -284,115 +335,120 @@
     </div>
 
     <script>
-        // CLIENT DATABASE ENGINE (Saves locally for whoever opens the link!)
+        // TRUE CACHE DATABASE (Isolates data per browser session so friends can edit safely!)
         let defaultHabits = [
-            "Python Advanced Development",
-            "Chess Grandmaster Play Analysis",
+            "Grandmaster Chess Play Analysis",
             "Write 2 Scenes (Novel Project)",
-            "Learn AI with ChatGPT Ecosystem",
-            "Sololearn Coding Drills",
-            "Memorize Strategic Theories"
+            "Python Advanced Class Development",
+            "Sololearn Coding Exercises",
+            "Memorize Strategic Theories & Contexts",
+            "Learn AI with ChatGPT Integration Protocols"
         ];
 
-        let savedHabits = JSON.parse(localStorage.getItem('royal_habit_names')) || defaultHabits;
-        let habitStates = JSON.parse(localStorage.getItem('royal_habit_states')) || new Array(savedHabits.length).fill(false);
-        
-        let pieChart;
+        let currentHabitNames = JSON.parse(localStorage.getItem('royal_matrix_names')) || defaultHabits;
+        let currentHabitStates = JSON.parse(localStorage.getItem('royal_matrix_states')) || new Array(currentHabitNames.length).fill(false);
+        let activePieChart;
 
-        function initTable() {
-            const tbody = document.getElementById('habitTableBody');
-            tbody.innerHTML = "";
+        function buildMatrixInterface() {
+            const container = document.getElementById('habitTableContainer');
+            container.innerHTML = "";
 
-            savedHabits.forEach((habit, index) => {
+            currentHabitNames.forEach((habit, idx) => {
                 let row = document.createElement('tr');
+                row.className = `matrix-row ${currentHabitStates[idx] ? 'completed-transform' : ''}`;
                 
                 row.innerHTML = `
                     <td>
-                        <input class="editable-task" type="text" value="${habit}" onchange="editHabitName(${index}, this.value)">
+                        <input class="editable-field" type="text" value="${habit}" onchange="saveHabitLabel(${idx}, this.value)">
                     </td>
-                    <td style="text-align: center;">
-                        <button class="check-btn ${habitStates[index] ? 'checked' : ''}" onclick="toggleHabitState(${index}, this)">
-                            ${habitStates[index] ? 'COMPLETED' : 'LOG ACTIVITY'}
+                    <td style="text-align: right;">
+                        <button class="check-btn ${currentHabitStates[idx] ? 'checked' : ''}" onclick="toggleRow(${idx}, this)">
+                            ${currentHabitStates[idx] ? 'COMPLETED' : 'LOG ACTIVITY'}
                         </button>
                     </td>
                 `;
-                tbody.appendChild(row);
+                container.appendChild(row);
             });
-            updateMetrics();
+            updateChartMetrics();
         }
 
-        function toggleHabitState(index, btn) {
-            habitStates[index] = !habitStates[index];
-            if(habitStates[index]) {
+        function toggleRow(idx, btn) {
+            currentHabitStates[idx] = !currentHabitStates[idx];
+            const targetRow = btn.closest('tr');
+            
+            if(currentHabitStates[idx]) {
                 btn.classList.add('checked');
                 btn.innerText = 'COMPLETED';
+                targetRow.classList.add('completed-transform');
             } else {
                 btn.classList.remove('checked');
                 btn.innerText = 'LOG ACTIVITY';
+                targetRow.classList.remove('completed-transform');
             }
-            localStorage.setItem('royal_habit_states', JSON.stringify(habitStates));
-            updateMetrics();
+            
+            localStorage.setItem('royal_matrix_states', JSON.stringify(currentHabitStates));
+            updateChartMetrics();
         }
 
-        function editHabitName(index, newValue) {
-            savedHabits[index] = newValue;
-            localStorage.setItem('royal_habit_names', JSON.stringify(savedHabits));
+        function saveHabitLabel(idx, val) {
+            currentHabitNames[idx] = val;
+            localStorage.setItem('royal_matrix_names', JSON.stringify(currentHabitNames));
         }
 
-        function addNewHabitRow() {
-            savedHabits.push("New Custom Operation");
-            habitStates.push(false);
-            localStorage.setItem('royal_habit_names', JSON.stringify(savedHabits));
-            localStorage.setItem('royal_habit_states', JSON.stringify(habitStates));
-            initTable();
+        function createNewRow() {
+            currentHabitNames.push("Custom Operation Matrix Field");
+            currentHabitStates.push(false);
+            localStorage.setItem('royal_matrix_names', JSON.stringify(currentHabitNames));
+            localStorage.setItem('royal_matrix_states', JSON.stringify(currentHabitStates));
+            buildMatrixInterface();
         }
 
-        function showSection(sectionId, navLink) {
-            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        function switchTab(sectionId, element) {
+            document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             
             document.getElementById(sectionId).classList.add('active');
-            navLink.classList.add('active');
+            element.classList.add('active');
         }
 
-        function updateMetrics() {
-            let done = habitStates.filter(Boolean).length;
-            let pending = habitStates.length - done;
+        function updateChartMetrics() {
+            let done = currentHabitStates.filter(Boolean).length;
+            let left = currentHabitStates.length - done;
 
-            if(pieChart) {
-                pieChart.data.datasets[0].data = [done, pending];
-                pieChart.update();
+            if(activePieChart) {
+                activePieChart.data.datasets[0].data = [done, left];
+                activePieChart.update();
             }
         }
 
-        // INITIALIZE CHART
-        const ctx = document.getElementById('royalPieChart').getContext('2d');
-        pieChart = new Chart(ctx, {
+        // CHARTS MOUNT
+        const ctx = document.getElementById('royalChartDisplay').getContext('2d');
+        activePieChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Completed Operations', 'Pending Windows'],
+                labels: ['Completed Windows', 'Pending Loops'],
                 datasets: [{
                     data: [0, 1],
-                    backgroundColor: ['#0284c7', '#f1f5f9'],
+                    backgroundColor: ['#c5a059', '#fbf9f4'],
                     borderColor: '#ffffff',
                     borderWidth: 2
                 }]
             },
             options: {
                 responsive: true,
-                plugins: { legend: { position: 'bottom', labels: { color: '#64748b' } } }
+                plugins: { legend: { position: 'bottom', labels: { color: '#64748b', font: { size: 11 } } } }
             }
         });
 
-        // LOAD WORKSPACE TITLE PREFERENCE
-        const wsTitle = document.getElementById('workspaceTitle');
-        wsTitle.innerText = localStorage.getItem('royal_ws_title') || "CHAHAT'S VAULT";
-        wsTitle.addEventListener('input', () => {
-            localStorage.setItem('royal_ws_title', wsTitle.innerText);
-        });
+        // HEADLINE CONTEXT PREFERENCE LOCK
+        function saveCustomTitle() {
+            const h1 = document.getElementById('workspaceTitle');
+            localStorage.setItem('royal_matrix_title', h1.innerText);
+        }
+        document.getElementById('workspaceTitle').innerText = localStorage.getItem('royal_matrix_title') || "CHAHAT'S VAULT";
 
-        // BOOT SYSTEM
-        initTable();
+        // RUN BOOT
+        buildMatrixInterface();
     </script>
 </body>
 </html>
