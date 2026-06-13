@@ -21,7 +21,6 @@
             padding-bottom: 60px;
         }
 
-        /* HIGH-TIER BACKGROUND TECH GRID */
         .matrix-grid {
             position: fixed;
             top: -20%;
@@ -68,7 +67,6 @@
             box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
         }
 
-        /* MAIN HUD CONTAINER */
         main {
             position: relative;
             z-index: 10;
@@ -84,7 +82,6 @@
             main { grid-template-cols: 1fr 1fr; }
         }
 
-        /* PREMIUM GLASS HOUSING */
         .hud-panel {
             background: rgba(11, 14, 19, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.04);
@@ -92,7 +89,6 @@
             border-radius: 8px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .panel-header {
@@ -103,9 +99,11 @@
             border-bottom: 1px solid rgba(255, 87, 34, 0.15);
             padding-bottom: 8px;
             font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* INTERACTIVE HABIT LOGGING LIST */
         .habit-row {
             display: flex;
             justify-content: space-between;
@@ -120,7 +118,6 @@
             font-weight: bold;
         }
 
-        /* PREMIUM METRIC BUTTONS */
         .action-btn {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -139,7 +136,17 @@
             box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
         }
 
-        /* SCORE CONTAINER RING */
+        .control-btn {
+            background: #FF5722;
+            border: none;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         .score-display {
             display: flex;
             flex-direction: column;
@@ -152,7 +159,6 @@
             font-size: 64px;
             font-weight: 900;
             color: #ffffff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
 
         .score-label {
@@ -162,7 +168,6 @@
             margin-top: 5px;
         }
 
-        /* ADVANCED GRAPH CONTAINER HOLDER */
         .chart-box {
             position: relative;
             width: 100%;
@@ -179,54 +184,57 @@
     <header>
         <div>
             <h1 class="system-title">QUANTUM_HABIT_MATRIX</h1>
-            <p style="font-size: 10px; color: #475569; margin-top: 4px;">SYSTEM OPERATIONAL // ZERO LIMITS</p>
+            <p style="font-size: 10px; color: #475569; margin-top: 4px;">SYSTEM OPERATIONAL // LIVE DATA CHAMBER</p>
         </div>
-        <div class="streak-badge">⚡ STREAK: 12 DAYS</div>
+        <div class="streak-badge" id="streakDisplay">⚡ STREAK: 0 DAYS</div>
     </header>
 
     <main>
         <div class="hud-panel">
-            <div class="panel-header">// DAILY TARGET CHECKLIST</div>
+            <div class="panel-header">
+                <span>// DAILY TARGET CHECKLIST</span>
+                <button class="control-btn" onclick="submitDay()">LOCK & SUBMIT DAY</button>
+            </div>
             
             <div class="habit-row">
                 <span class="habit-name">Python Advanced Class</span>
-                <button class="action-btn completed" onclick="toggleHabit(this, 15)">COMPLETED</button>
+                <button class="action-btn" id="habit0" onclick="toggleHabit(0)">LOG ACTIVITY</button>
             </div>
             <div class="habit-row">
                 <span class="habit-name">Early Wake-up Routine</span>
-                <button class="action-btn completed" onclick="toggleHabit(this, 20)">COMPLETED</button>
+                <button class="action-btn" id="habit1" onclick="toggleHabit(1)">LOG ACTIVITY</button>
             </div>
             <div class="habit-row">
                 <span class="habit-name">Strategic Reading & Notes</span>
-                <button class="action-btn" onclick="toggleHabit(this, 15)">LOG ACTIVITY</button>
+                <button class="action-btn" id="habit2" onclick="toggleHabit(2)">LOG ACTIVITY</button>
             </div>
             <div class="habit-row">
-                <span class="habit-name">Fitness/Cardio Optimization</span>
-                <button class="action-btn completed" onclick="toggleHabit(this, 22)">COMPLETED</button>
+                <span class="habit-name">Fitness & Optimization</span>
+                <button class="action-btn" id="habit3" onclick="toggleHabit(3)">LOG ACTIVITY</button>
             </div>
             <div class="habit-row">
                 <span class="habit-name">Financial Market Tracking</span>
-                <button class="action-btn" onclick="toggleHabit(this, 14)">LOG ACTIVITY</button>
+                <button class="action-btn" id="habit4" onclick="toggleHabit(4)">LOG ACTIVITY</button>
             </div>
         </div>
 
         <div class="hud-panel">
-            <div class="panel-header">// QUANTUM PERFORMANCE SCORE</div>
+            <div class="panel-header">// LIVE PERFORMANCE SCORE</div>
             <div class="score-display">
-                <div class="score-num" id="liveScore">71</div>
-                <div class="score-label">STRONG EFFORT INDEX</div>
+                <div class="score-num" id="liveScore">0</div>
+                <div class="score-label" id="scoreLabel">INITIALIZING MATRIX...</div>
             </div>
         </div>
 
         <div class="hud-panel">
-            <div class="panel-header">// MONTHLY CONSISTENCY BI-METRIC</div>
+            <div class="panel-header">// ACCUMULATED TARGET RATIO</div>
             <div class="chart-box">
                 <canvas id="pieChart"></canvas>
             </div>
         </div>
 
         <div class="hud-panel">
-            <div class="panel-header">// WEEKLY AVERAGE METRIC ACCUMULATION</div>
+            <div class="panel-header">// RECENT DAILY SCORES HISTORY</div>
             <div class="chart-box">
                 <canvas id="barChart"></canvas>
             </div>
@@ -234,59 +242,114 @@
     </main>
 
     <script>
-        // DYNAMIC SCORE CALCULATOR ENGINE
-        let score = 71;
-        const scoreElement = document.getElementById('liveScore');
+        // CORE DATABASE LOGIC (Saves directly to browser memory)
+        let appState = JSON.parse(localStorage.getItem('quantum_habit_data')) || {
+            streak: 0,
+            currentDayStatus: [false, false, false, false, false],
+            history: [0, 0, 0, 0] // Stores last 4 submitted day scores
+        };
 
-        function toggleHabit(button, value) {
-            if (button.classList.contains('completed')) {
-                button.classList.remove('completed');
-                button.innerText = 'LOG ACTIVITY';
-                score -= value;
-            } else {
-                button.classList.add('completed');
-                button.innerText = 'COMPLETED';
-                score += value;
+        const totalHabits = 5;
+        let pieChart, barChart;
+
+        function updateUI() {
+            // Calculate active score based on clicked buttons
+            let completedCount = appState.currentDayStatus.filter(Boolean).length;
+            let currentScore = Math.round((completedCount / totalHabits) * 100);
+            
+            document.getElementById('liveScore').innerText = currentScore;
+            document.getElementById('streakDisplay').innerText = `⚡ STREAK: ${appState.streak} DAYS`;
+
+            // Dynamic text based on how well you did
+            let label = "GET TO WORK TERMINAL";
+            if(currentScore === 100) label = "ABSOLUTE DOMINANCE INDEX";
+            else if(currentScore >= 60) label = "STRONG EFFORT INDEX";
+            else if(currentScore > 0) label = "MINIMAL ENGINE OUTPUT";
+            document.getElementById('scoreLabel').innerText = label;
+
+            // Update button styles instantly when clicked
+            for (let i = 0; i < totalHabits; i++) {
+                let btn = document.getElementById(`habit${i}`);
+                if (appState.currentDayStatus[i]) {
+                    btn.classList.add('completed');
+                    btn.innerText = 'COMPLETED';
+                } else {
+                    btn.classList.remove('completed');
+                    btn.innerText = 'LOG ACTIVITY';
+                }
             }
-            scoreElement.innerText = Math.max(0, Math.min(100, score));
+
+            // Update Charts
+            let totalCompletedHistorical = appState.history.reduce((a, b) => a + b, 0) / 100 * totalHabits + completedCount;
+            let totalMissedHistorical = (appState.history.length + 1) * totalHabits - totalCompletedHistorical;
+
+            pieChart.data.datasets[0].data = [totalCompletedHistorical, totalMissedHistorical];
+            pieChart.update();
+
+            barChart.data.datasets[0].data = [...appState.history, currentScore].slice(-4);
+            barChart.update();
+
+            // Save to browser cache
+            localStorage.setItem('quantum_habit_data', JSON.stringify(appState));
         }
 
-        // SCROLL REACTION NETWORK VISUAL
+        function toggleHabit(index) {
+            appState.currentDayStatus[index] = !appState.currentDayStatus[index];
+            updateUI();
+        }
+
+        // THE "LOCK & SUBMIT DAY" CHAMBER
+        function submitDay() {
+            let completedCount = appState.currentDayStatus.filter(Boolean).length;
+            let finalDayScore = Math.round((completedCount / totalHabits) * 100);
+
+            // If you completed more than 50% of your habits, streak builds!
+            if (finalDayScore >= 60) {
+                appState.streak += 1;
+            } else {
+                appState.streak = 0; // Streak breaks if you miss too much!
+            }
+
+            // Push score into history charts
+            appState.history.push(finalDayScore);
+            if (appState.history.length > 4) appState.history.shift();
+
+            // Reset checklist boxes for the next day
+            appState.currentDayStatus = [false, false, false, false, false];
+            
+            alert(`Day locked! Score: ${finalDayScore}%. Starting fresh deployment room.`);
+            updateUI();
+        }
+
+        // BACKGROUND GRIDS VISUAL ENGINE
         const grid = document.getElementById('matrixGrid');
         window.addEventListener('scroll', () => {
             grid.style.transform = `rotateX(15deg) translateY(${window.scrollY * 0.15}px)`;
         });
 
-        // ADVANCED PIE CHART CONFIGURATION
+        // CHARTS SETUP
         const ctxPie = document.getElementById('pieChart').getContext('2d');
-        const pieChart = new Chart(ctxPie, {
+        pieChart = new Chart(ctxPie, {
             type: 'pie',
             data: {
-                labels: ['Completed Tasks', 'Missed Target Windows'],
+                labels: ['Completed Operations', 'Missed Windows'],
                 datasets: [{
-                    data: [71, 29],
+                    data: [0, 1],
                     backgroundColor: ['rgba(0, 229, 255, 0.6)', 'rgba(255, 87, 34, 0.4)'],
                     borderColor: ['#00E5FF', '#FF5722'],
                     borderWidth: 1.5
                 }]
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { labels: { color: '#94a3b8', font: { family: 'monospace' } } }
-                }
-            }
+            options: { responsive: true, plugins: { legend: { labels: { color: '#94a3b8', font: { family: 'monospace' } } } } }
         });
 
-        // ADVANCED BAR CHART CONFIGURATION
         const ctxBar = document.getElementById('barChart').getContext('2d');
-        const barChart = new Chart(ctxBar, {
+        barChart = new Chart(ctxBar, {
             type: 'bar',
             data: {
-                labels: ['Wk 01', 'Wk 02', 'Wk 03', 'Wk 04'],
+                labels: ['Day-3', 'Day-2', 'Day-1', 'Active Day'],
                 datasets: [{
-                    label: 'Avg Score',
-                    data: [65, 78, 71, 84],
+                    data: [0, 0, 0, 0],
                     backgroundColor: 'rgba(0, 229, 255, 0.2)',
                     borderColor: '#00E5FF',
                     borderWidth: 1
@@ -296,13 +359,14 @@
                 responsive: true,
                 scales: {
                     x: { ticks: { color: '#475569' }, grid: { display: false } },
-                    y: { ticks: { color: '#475569' }, grid: { color: 'rgba(255,255,255,0.03)' } }
+                    y: { min: 0, max: 100, ticks: { color: '#475569' }, grid: { color: 'rgba(255,255,255,0.03)' } }
                 },
-                plugins: {
-                    legend: { display: false }
-                }
+                plugins: { legend: { display: false } }
             }
         });
+
+        // Boot system data
+        updateUI();
     </script>
 </body>
 </html>
