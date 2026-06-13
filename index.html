@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE ROYAL MINIMALIST WORKSPACE</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>THE ROYAL MATRIX // CONSOLE</title>
     <style>
         /* LUXURY LIGHT DESIGN SYSTEM */
         * {
@@ -22,7 +21,7 @@
             overflow: hidden;
         }
 
-        /* REGAL COMPACT SIDEBAR */
+        /* REGAL SIDEBAR NAVIGATION */
         .sidebar {
             width: 290px;
             background: #ffffff;
@@ -42,10 +41,6 @@
             outline: none;
             padding: 4px;
             border-radius: 4px;
-        }
-        
-        .brand-section h1:focus {
-            background: #fcfaf4;
         }
 
         .brand-section p {
@@ -70,6 +65,7 @@
             color: #78879a;
             font-size: 13px;
             font-weight: 600;
+            text-decoration: none;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -88,20 +84,11 @@
             border-radius: 0 6px 6px 0;
         }
 
-        /* VIEWPORT CORE HOUSING */
+        /* VIEWPORT STRUCTURE */
         .main-content {
             flex-grow: 1;
             padding: 60px 80px;
             overflow-y: auto;
-        }
-
-        .view-section {
-            display: none;
-        }
-
-        .view-section.active {
-            display: block;
-            animation: elegantSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .header-title {
@@ -112,7 +99,7 @@
             margin-bottom: 40px;
         }
 
-        /* CUSTOM TRANSLATION MATRIX ROW SHEETS */
+        /* HABIT EXECUTION MATRIX ROWS */
         .matrix-table {
             width: 100%;
             border-collapse: separate;
@@ -130,7 +117,7 @@
             letter-spacing: 1px;
         }
 
-        /* TRANSFORMATION LAYER ANIMATIONS */
+        /* FLUID TRANSFORM LAYERS */
         .matrix-row {
             background: #ffffff;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease;
@@ -143,9 +130,14 @@
         }
 
         .matrix-row.completed-transform {
-            opacity: 0.5;
+            opacity: 0.45;
             transform: scale(0.985);
             box-shadow: none;
+        }
+
+        .matrix-row.completed-transform .editable-field {
+            color: #c5a059;
+            font-style: italic;
         }
 
         .matrix-row td {
@@ -166,7 +158,6 @@
             border-bottom-right-radius: 8px;
         }
 
-        /* TOTAL CUSTOMIZATION TEXT BOXES */
         .editable-field {
             border: none;
             background: transparent;
@@ -176,7 +167,7 @@
             width: 100%;
             padding: 6px;
             border-radius: 4px;
-            transition: background 0.2s;
+            transition: color 0.3s ease;
         }
 
         .editable-field:focus {
@@ -184,7 +175,7 @@
             outline: none;
         }
 
-        /* ROYALTY ACTION BUTTONS */
+        /* INTERACTIVE CHAMPAGNE CHECK BUTTONS */
         .check-btn {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -195,7 +186,7 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s ease;
         }
 
         .check-btn:hover {
@@ -210,62 +201,25 @@
             box-shadow: 0 0 10px rgba(197, 160, 89, 0.12);
         }
 
-        .add-row-action {
-            margin-top: 20px;
-            background: transparent;
-            color: #c5a059;
-            border: 1px dashed #c5a059;
-            padding: 12px 24px;
+        /* ACTION FOOTER LEDGER */
+        .ledger-action-btn {
+            margin-top: 35px;
+            background: #c5a059;
+            color: #ffffff;
+            border: none;
+            padding: 16px 32px;
             border-radius: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .add-row-action:hover {
-            background: #fdfbf7;
-        }
-
-        /* VAULT DIRECTORY BOARDS */
-        .vault-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-            gap: 25px;
-        }
-
-        .vault-item {
-            background: #ffffff;
-            border: 1px solid #f3ece3;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.005);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .vault-item:hover {
-            border-color: #c5a059;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(197, 160, 89, 0.03);
-        }
-
-        .vault-item h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 12px;
-        }
-
-        .vault-item p {
             font-size: 13px;
-            color: #64748b;
-            line-height: 1.6;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(197, 160, 89, 0.15);
+            transition: transform 0.2s;
         }
 
-        @keyframes elegantSlide {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+        .ledger-action-btn:hover {
+            transform: translateY(-1px);
         }
     </style>
 </head>
@@ -279,176 +233,134 @@
             </div>
             
             <div class="nav-links">
-                <div class="nav-item active" onclick="switchTab('matrix-sec', this)">✦ HABIT CHAMBER</div>
-                <div class="nav-item" onclick="switchTab('metrics-sec', this)">✦ PERFORMANCE ARCHIVE</div>
-                <div class="nav-item" onclick="switchTab('vault-sec', this)">✦ CRITICAL VAULTS</div>
+                <a href="index.html" class="nav-item active">✦ DAILY CONSOLE</a>
+                <a href="archive.html" class="nav-item">✦ ARCHIVE MATRIX</a>
             </div>
         </div>
         
-        <div style="font-size: 10px; color: #cbd5e1; font-weight: 700; letter-spacing: 0.5px;">SECURE ENVIRONMENT // v3.0</div>
+        <div style="font-size: 10px; color: #cbd5e1; font-weight: 700; letter-spacing: 0.5px;">SYSTEM MATRIX // 2026</div>
     </div>
 
     <div class="main-content">
-
-        <div id="matrix-sec" class="view-section active">
-            <div class="header-title">Daily Operations Matrix</div>
-            
-            <table class="matrix-table">
-                <thead>
-                    <tr>
-                        <th>Habit Matrix Target Fields (Click to edit text directly)</th>
-                        <th style="width: 160px; text-align: right;">Execution</th>
-                    </tr>
-                </thead>
-                <tbody id="habitTableContainer">
-                    </tbody>
-            </table>
-            
-            <button class="add-row-action" onclick="createNewRow()">+ ADD CUSTOMIZABLE FIELD ROW</button>
-        </div>
-
-        <div id="metrics-sec" class="view-section">
-            <div class="header-title">Dynamic Performance Balance</div>
-            <div style="max-width: 280px; margin: 0 auto;">
-                <canvas id="royalChartDisplay"></canvas>
-            </div>
-        </div>
-
-        <div id="vault-sec" class="view-section">
-            <div class="header-title">Classified Intellectual Vaults</div>
-            <div class="vault-grid">
-                <div class="vault-item">
-                    <h3>🎓 Indian Education System</h3>
-                    <p>Comprehensive timeline maps and critical reviews analyzing structural policy locks and stagnation models.</p>
-                </div>
-                <div class="vault-item">
-                    <h3>🌿 A Philosophy of Wounds</h3>
-                    <p>Deep behavioral trace charts tracking generational pattern loops, transmission cycles, and healing pathways.</p>
-                </div>
-                <div class="vault-item">
-                    <h3>🔮 Conversation With Darkness</h3>
-                    <p>Creative blueprint text assets, visual aesthetic criteria outlines, and conceptual narrative setups.</p>
-                </div>
-            </div>
-        </div>
-
+        <div class="header-title">Daily Operations Matrix</div>
+        
+        <table class="matrix-table">
+            <thead>
+                <tr>
+                    <th>Habit Coordinates (Editable fields)</th>
+                    <th style="width: 160px; text-align: right;">Execution</th>
+                </tr>
+            </thead>
+            <tbody id="habitTableContainer">
+                </tbody>
+        </table>
+        
+        <button class="ledger-action-btn" onclick="commitDayToLedger()">✦ Secure Today's Ledger Entry</button>
     </div>
 
     <script>
-        // TRUE CACHE DATABASE (Isolates data per browser session so friends can edit safely!)
-        let defaultHabits = [
+        // CLIENT DATABASE PLATFORM
+        let defaultHabitSet = [
             "Grandmaster Chess Play Analysis",
             "Write 2 Scenes (Novel Project)",
             "Python Advanced Class Development",
             "Sololearn Coding Exercises",
             "Memorize Strategic Theories & Contexts",
-            "Learn AI with ChatGPT Integration Protocols"
+            "Learn AI with ChatGPT Integration Protocols",
+            "Early Wake Up at 5 AM",
+            "Watch Technical/Academic Lectures",
+            "Create Structured Concept Notes",
+            "Drink Targeted Water Quota",
+            "Track & Update Financial Platform Design",
+            "Read Assigned Chapter Matrix Logs"
         ];
 
-        let currentHabitNames = JSON.parse(localStorage.getItem('royal_matrix_names')) || defaultHabits;
-        let currentHabitStates = JSON.parse(localStorage.getItem('royal_matrix_states')) || new Array(currentHabitNames.length).fill(false);
-        let activePieChart;
+        // Read or build localized database state
+        let ledger = JSON.parse(localStorage.getItem('quantum_royal_ledger')) || {
+            habitNames: defaultHabitSet,
+            currentChecks: new Array(defaultHabitSet.length).fill(false),
+            monthlyLogs: {} // Stores year-wide data indexed by day counts
+        };
 
-        function buildMatrixInterface() {
+        function mountMatrix() {
             const container = document.getElementById('habitTableContainer');
             container.innerHTML = "";
 
-            currentHabitNames.forEach((habit, idx) => {
+            ledger.habitNames.forEach((habit, idx) => {
                 let row = document.createElement('tr');
-                row.className = `matrix-row ${currentHabitStates[idx] ? 'completed-transform' : ''}`;
+                row.className = `matrix-row ${ledger.currentChecks[idx] ? 'completed-transform' : ''}`;
                 
                 row.innerHTML = `
                     <td>
-                        <input class="editable-field" type="text" value="${habit}" onchange="saveHabitLabel(${idx}, this.value)">
+                        <input class="editable-field" type="text" value="${habit}" onchange="editHabitLabel(${idx}, this.value)">
                     </td>
                     <td style="text-align: right;">
-                        <button class="check-btn ${currentHabitStates[idx] ? 'checked' : ''}" onclick="toggleRow(${idx}, this)">
-                            ${currentHabitStates[idx] ? 'COMPLETED' : 'LOG ACTIVITY'}
+                        <button class="check-btn ${ledger.currentChecks[idx] ? 'checked' : ''}" onclick="toggleTargetCheck(${idx}, this)">
+                            ${ledger.currentChecks[idx] ? 'COMPLETED' : 'LOG ACTIVITY'}
                         </button>
                     </td>
                 `;
                 container.appendChild(row);
             });
-            updateChartMetrics();
+            localStorage.setItem('quantum_royal_ledger', JSON.stringify(ledger));
         }
 
-        function toggleRow(idx, btn) {
-            currentHabitStates[idx] = !currentHabitStates[idx];
-            const targetRow = btn.closest('tr');
+        function toggleTargetCheck(idx, btn) {
+            ledger.currentChecks[idx] = !ledger.currentChecks[idx];
+            const row = btn.closest('tr');
             
-            if(currentHabitStates[idx]) {
+            if(ledger.currentChecks[idx]) {
                 btn.classList.add('checked');
                 btn.innerText = 'COMPLETED';
-                targetRow.classList.add('completed-transform');
+                row.classList.add('completed-transform');
             } else {
                 btn.classList.remove('checked');
                 btn.innerText = 'LOG ACTIVITY';
-                targetRow.classList.remove('completed-transform');
+                row.classList.remove('completed-transform');
             }
+            localStorage.setItem('quantum_royal_ledger', JSON.stringify(ledger));
+        }
+
+        function editHabitLabel(idx, val) {
+            ledger.habitNames[idx] = val;
+            localStorage.setItem('quantum_royal_ledger', JSON.stringify(ledger));
+        }
+
+        function commitDayToLedger() {
+            let done = ledger.currentChecks.filter(Boolean).length;
+            let finalScore = Math.round((done / ledger.habitNames.length) * 100);
             
-            localStorage.setItem('royal_matrix_states', JSON.stringify(currentHabitStates));
-            updateChartMetrics();
+            // Calculate total global day count of current year to pin chronologically
+            let now = new Date();
+            let start = new Date(now.getFullYear(), 0, 0);
+            let diff = now - start;
+            let oneDay = 1000 * 60 * 60 * 24;
+            let dayOfYearIndex = Math.floor(diff / oneDay);
+
+            // Ask user for their optional entry note before wiping layout (routes to Chamber IV)
+            let rawNote = prompt(`Today's Matrix Execution Score: ${finalScore}%.\nOptional: Transcribe your reflection journal text entry for today below:`);
+            let finalizedNote = (rawNote && rawNote.trim()) ? rawNote.trim() : "Operational matrix secured.";
+
+            // Save object securely into historical indices map
+            ledger.monthlyLogs[dayOfYearIndex] = {
+                score: finalScore,
+                note: finalizedNote
+            };
+
+            // Reset active checklist boxes for next loop
+            ledger.currentChecks = new Array(ledger.habitNames.length).fill(false);
+            localStorage.setItem('quantum_royal_ledger', JSON.stringify(ledger));
+            mountMatrix();
+
+            alert("Entry encrypted and pushed into your Archive Vault.");
         }
 
-        function saveHabitLabel(idx, val) {
-            currentHabitNames[idx] = val;
-            localStorage.setItem('royal_matrix_names', JSON.stringify(currentHabitNames));
-        }
-
-        function createNewRow() {
-            currentHabitNames.push("Custom Operation Matrix Field");
-            currentHabitStates.push(false);
-            localStorage.setItem('royal_matrix_names', JSON.stringify(currentHabitNames));
-            localStorage.setItem('royal_matrix_states', JSON.stringify(currentHabitStates));
-            buildMatrixInterface();
-        }
-
-        function switchTab(sectionId, element) {
-            document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            
-            document.getElementById(sectionId).classList.add('active');
-            element.classList.add('active');
-        }
-
-        function updateChartMetrics() {
-            let done = currentHabitStates.filter(Boolean).length;
-            let left = currentHabitStates.length - done;
-
-            if(activePieChart) {
-                activePieChart.data.datasets[0].data = [done, left];
-                activePieChart.update();
-            }
-        }
-
-        // CHARTS MOUNT
-        const ctx = document.getElementById('royalChartDisplay').getContext('2d');
-        activePieChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Completed Windows', 'Pending Loops'],
-                datasets: [{
-                    data: [0, 1],
-                    backgroundColor: ['#c5a059', '#fbf9f4'],
-                    borderColor: '#ffffff',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { position: 'bottom', labels: { color: '#64748b', font: { size: 11 } } } }
-            }
-        });
-
-        // HEADLINE CONTEXT PREFERENCE LOCK
         function saveCustomTitle() {
-            const h1 = document.getElementById('workspaceTitle');
-            localStorage.setItem('royal_matrix_title', h1.innerText);
+            localStorage.setItem('quantum_royal_title', document.getElementById('workspaceTitle').innerText);
         }
-        document.getElementById('workspaceTitle').innerText = localStorage.getItem('royal_matrix_title') || "CHAHAT'S VAULT";
+        document.getElementById('workspaceTitle').innerText = localStorage.getItem('quantum_royal_title') || "CHAHAT'S VAULT";
 
-        // RUN BOOT
-        buildMatrixInterface();
+        mountMatrix();
     </script>
 </body>
 </html>
